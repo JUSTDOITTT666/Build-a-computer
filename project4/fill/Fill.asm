@@ -36,7 +36,7 @@ M=0
 	@DRAW
 	D;JNE
 
-	// When no key is pressed, the start cleaning
+	// When no key is pressed, then start cleaning
 	// if i == -1, then back LOOP
 	@i
 	D=M+1
