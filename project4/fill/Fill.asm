@@ -30,13 +30,13 @@ M=D
 M=0
 
 (LOOP)
-	// When any key is pressed, then start drawing
+	// When any key is pressed, start drawing
 	@KBD
 	D=M
 	@DRAW
 	D;JNE
 
-	// When no key is pressed, then start cleaning
+	// When no key is pressed, start cleaning
 	// if i == -1, then back LOOP
 	@i
 	D=M+1
