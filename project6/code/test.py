@@ -72,8 +72,6 @@ pre_var_dic = {'R0': 0,
                'THIS': 3,
                'THAT': 4}
 
-var_dic = {}
-label_dic = {}
 
 """
 Delete  whitespace and some line like:
@@ -92,6 +90,7 @@ def delete_whitespace(filename):
 
     f.close()
     f1.close()
+    return
 
 
 """
@@ -114,7 +113,7 @@ def translat_a_ins(filename):
             i = format(i, 'b').zfill(16)
             line = line.replace(line, str(i) + "\n")
         sys.stdout.write(line)
-
+    return
 
 """
 Translate C-instructions to binary, for example:
@@ -143,7 +142,7 @@ def translat_c_ins(filename):
 
         line = line.replace(line, out + "\n")
         sys.stdout.write(line)
-
+    return
 
 """
 Handing pre-defined symbols:
@@ -151,6 +150,8 @@ Handing pre-defined symbols:
     @i   ===>  @16(if i is the first variable)
 """
 def hand_symbols(filename):
+    label_dic = create_label_dic(out_filename)
+    var_dic = {}
     i = 0
     create_label_dic(out_filename)
 
@@ -174,10 +175,13 @@ def hand_symbols(filename):
                 line = line.replace(line[1:], str(var_dic[symbol]) + '\n')
 
         sys.stdout.write(line)
+    return
+
 
 
 def create_label_dic(filename):
     i = -1
+    label_dic = {}
 
     f = open(filename, 'r')
     for line in f:
@@ -187,6 +191,7 @@ def create_label_dic(filename):
             i -= 1
             label_dic[symbol] = i + 1
     f.close()
+    return label_dic
 
 
 """
